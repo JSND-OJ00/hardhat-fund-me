@@ -1,5 +1,4 @@
-node_modules
-
+gas-report.txt
 node_modules
 .env
 coverage
