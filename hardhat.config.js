@@ -1,9 +1,14 @@
-require("@nomiclabs/hardhat-waffle")
-require("hardhat-gas-reporter")
-require("@nomiclabs/hardhat-etherscan")
-require("dotenv").config()
-require("solidity-coverage")
-require("hardhat-deploy")
+import "@typechain/hardhat"
+import "@nomiclabs/hardhat-waffle"
+import "@nomiclabs/hardhat-etherscan"
+import "@nomiclabs/hardhat-ethers"
+import "hardhat-gas-reporter"
+import "dotenv/config"
+import "solidity-coverage"
+import "hardhat-deploy"
+import "solidity-coverage"
+import { HardhatUserConfig } from "hardhat/config"
+
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
 /**
@@ -14,15 +19,12 @@ const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY || ""
 const KOVAN_RPC_URL =
     process.env.KOVAN_RPC_URL ||
     "https://eth-mainnet.alchemyapi.io/v2/your-api-key"
-const RINKEBY_RPC_URL =
-    process.env.RINKEBY_RPC_URL ||
-    "https://eth-mainnet.alchemyapi.io/v2/your-api-key"
 const PRIVATE_KEY =
     process.env.PRIVATE_KEY ||
     "0x11ee3108a03081fe260ecdc106554d09d9d1209bcafd46942b10e02943effc4a"
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || ""
 
-module.exports = {
+const config: HardhatUserConfig = {
     defaultNetwork: "hardhat",
     networks: {
         hardhat: {
@@ -33,14 +35,6 @@ module.exports = {
             url: KOVAN_RPC_URL,
             accounts: [PRIVATE_KEY],
             chainId: 42,
-            blockConfirmations: 6,
-            gas: 6000000,
-        },
-        rinkeby: {
-            url: RINKEBY_RPC_URL,
-            accounts: [PRIVATE_KEY],
-            chainId: 4,
-            blockConfirmations: 6,
         },
     },
     solidity: {
@@ -70,3 +64,5 @@ module.exports = {
         },
     },
 }
+
+export default config
